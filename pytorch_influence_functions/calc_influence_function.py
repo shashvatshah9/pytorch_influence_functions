@@ -308,7 +308,7 @@ def calc_influence_function(train_dataset_size, grad_z_vecs=None, e_s_test=None)
         influences.append(tmp_influence)
         display_progress("Calc. influence function: ", i, train_dataset_size)
 
-    harmful = np.argsort(influences)
+    harmful = np.argsort(influences.cpu())
     helpful = harmful[::-1]
 
     return influences, harmful.tolist(), helpful.tolist()
