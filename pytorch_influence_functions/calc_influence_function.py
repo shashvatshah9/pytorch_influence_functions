@@ -398,10 +398,10 @@ def calc_influence_single(
         influences.append(tmp_influence)
         display_progress("Calc. influence function: ", i, train_dataset_size)
 
-    harmful = np.argsort(influences)
+    harmful = np.argsort(influences.cpu())
     helpful = harmful[::-1]
 
-    return influences, harmful.cpu().tolist(), helpful.cpu().tolist(), test_id_num
+    return influences, harmful.tolist(), helpful.tolist(), test_id_num
 
 
 def get_dataset_sample_ids_per_class(class_id, num_samples, test_loader, start_index=0):
